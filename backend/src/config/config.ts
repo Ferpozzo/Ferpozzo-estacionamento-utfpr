@@ -13,7 +13,7 @@ aws.config.update(SESConfig)
 const storageTypes = {
     local: multer.diskStorage({
         destination: (request: any, file: any, cb: any) => {
-            cb(null, path.resolve(__dirname, '..', '..', 'tmp', 'images', 'locales'))
+            cb(null, path.resolve(__dirname, '..', '..', 'tmp', 'images', 'vehicles'))
         },
         filename: (request: any, file: any, cb: any) => {
             crypto.randomBytes(16, (error, hash) => {
@@ -46,7 +46,7 @@ const storageTypes = {
 export const environment = {
     server: {
         port: process.env.SERVER_PORT || 3000,
-        localesPath: './dist/images/locales/'
+        localesPath: './dist/images/vehicles/'
     },
     db: { url: process.env.DB_URL || 'mongodb+srv://turistas:turistas@turistas.jpes4.mongodb.net/turistas?retryWrites=true&w=majority' },
     security: {
@@ -59,7 +59,7 @@ export const environment = {
         }
     },
     multer: {
-        dest: path.resolve(__dirname, '..', '..', 'tmp', 'images', 'locales'),
+        dest: path.resolve(__dirname, '..', '..', 'tmp', 'images', 'vehicles'),
         storage: storageTypes[process.env.STORAGE_TYPE],
         limits: {
             fileSize: 2 * 1024 * 1024

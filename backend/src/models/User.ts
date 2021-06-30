@@ -3,16 +3,78 @@ import { mongoose } from '../database/database'
 import bcrypt from 'bcryptjs'
 import { environment } from '../config/config';
 
+
+export interface UserServidor extends mongoose.Document {
+    _id?: string,
+    ramal: string,
+    branchLine: string,
+    room: string,
+    role: string,
+    registrationId: string
+}
+
+export const UserServidorSchema = new mongoose.Schema({
+    ramal: {
+        type: String,
+        required: true
+    },
+    branchLine: {
+        type: String,
+        required: true
+    },
+    room: {
+        type: String,
+        required: true
+    },
+    role: {
+        type: String,
+        required: true
+    },
+    registrationId: {
+        type: String,
+        required: true
+    }
+}
+)
+export interface UserAluno extends mongoose.Document {
+    _id?: string,
+    course: string,
+    ra: string
+}
+export const UserAlunoSchema = new mongoose.Schema({
+    course: {
+        type: String,
+        required: true
+    },
+    ra: {
+        type: String,
+        required: true
+    }
+}
+)
+export interface UserVisitante extends mongoose.Document {
+    _id?: string,
+    cpf: string
+}
+
+export const UserVisitanteSchema = new mongoose.Schema({
+    cpf: {
+        type: String,
+        required: true
+    }
+},
+    {
+        timestamps: true
+    }
+)
 export interface UserInterface extends mongoose.Document {
     _id?: string,
     name: string,
     email: string,
     password: string,
     phone: string,
-    gender: 'Male' | 'Female' | 'Other',
-    documentId: string,
-    type: 'Consumer' | 'Commercial' | 'Both',
-    status: 'Active' | 'Inactive',
+    type: 'Servidor' | 'Aluno' | 'Visitante',
+    status: 'Ativo' | 'Inativo',
     updatedAt?: Date,
     createdAt?: Date
 }
@@ -26,15 +88,6 @@ export const UserSchema = new mongoose.Schema({
     phone: {
         type: String,
         required: true
-    },
-    documentId: {
-        type: String,
-        unique: true
-    },
-    gender: {
-        type: String,
-        required: true,
-        enum: ['Male', 'Female', 'Other']
     },
     email: {
         type: String,
@@ -51,13 +104,16 @@ export const UserSchema = new mongoose.Schema({
     type: {
         type: String,
         required: true,
-        enum: ['Consumer', 'Commercial', 'Both']
+        enum: ['Servidor', 'Aluno', 'Visitante']
     },
     status: {
         type: String,
         required: true,
-        enum: ['Active', 'Inactive', 'Banned']
-    }
+        enum: ['Ativo', 'Inativo']
+    },
+    servidorInfo: UserServidorSchema,
+    alunoInfo: UserAlunoSchema,
+    visitanteInfo: UserVisitanteSchema,
 },
     {
         timestamps: true

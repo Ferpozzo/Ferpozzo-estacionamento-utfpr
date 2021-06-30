@@ -1,9 +1,9 @@
 import { localeRouter } from "./locales";
-import { serviceRouter } from "./services";
+import { vehicleRouter } from "./vehicle";
 import { userRouter } from "./user";
 import { authRouter } from '../middleware/auth'
-import { reservationRouter } from "./reservations";
+import { parkingRouter } from "./parking";
 
-const routes = [userRouter, localeRouter, serviceRouter, authRouter, reservationRouter]
+const routes = [userRouter, localeRouter, vehicleRouter, authRouter, parkingRouter]
 
 export { routes }

@@ -1,5 +1,4 @@
 import aws from 'aws-sdk';
-import { ServiceSchema } from './Service';
 import mongoose, { Schema } from 'mongoose'
 import { promisify } from 'util'
 import fs from 'fs'
@@ -85,15 +84,15 @@ export const ImageLocaleSchema = new mongoose.Schema({
         timestamps: true
     }
 )
-ImageLocaleSchema.pre('save', function () {
+ImageLocaleSchema.pre<ImageLocaleInterface>('save', function () {
     if (!this.url) {
         this.url = process.env.BACKEND_URL + '/files/images/locales/' + this.key
     }
 })
-ImageLocaleSchema.pre('remove', function () {
+ImageLocaleSchema.pre<ImageLocaleInterface>('remove', function () {
     if (process.env.STORAGE_TYPE === 's3') {
         return s3.deleteObject({
-            Bucket: process.env.AWS_BUCKET,
+            Bucket: `${process.env.AWS_BUCKET}`,
             Key: this.key
         }).promise()
     } else {
