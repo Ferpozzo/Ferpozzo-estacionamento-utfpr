@@ -1,0 +1,65 @@
+.gender-radio mat-label {
+    color: #777777;
+}
+.gender-radio {
+    background-color: #fafafa;
+}
+.form-group{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    justify-items: center;
+    justify-self: center;
+    align-items: center;
+    align-content: center;
+}
+.gender-radio-group {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+mat-form-field {
+    margin-bottom: 8px;
+    width: 90%;
+}
+mat-error {
+    font-size: x-small;
+    font-weight: 540;
+}
+.content {
+    position: relative;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.box {
+    width: 500px;
+    background: #fff;
+    border: 1px solid #d3d3d3;
+}
+.a {
+    cursor: pointer;
+}
+.actionButtons {
+    display: flex;
+    justify-content: center;
+}
+.tittle {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.indicador-radio mat-label {
+    color: #777777;
+}
+.indicador-radio {
+    background-color: #fafafa;
+    &-group {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+    }
+}
